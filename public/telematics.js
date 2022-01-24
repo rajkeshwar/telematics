@@ -2,7 +2,7 @@
  * @Author: Rajkeshwar Prasad(rajkeshwar.pd@gmail.com) 
  * @Date: 2022-01-24 05:25:19 
  * @Last Modified by: Rajkeshwar Prasad
- * @Last Modified time: 2022-01-24 05:33:41
+ * @Last Modified time: 2022-01-24 05:40:57
  */
 
 class EvaluateForm {
@@ -33,7 +33,7 @@ class EvaluateForm {
 
   handleResponse(resp) {
     console.log(`Received response :`, resp);
-    if (resp.id) {
+    if (resp.hashlink) {
       alert('Your request is send. Please check your email.')
     }
   }
