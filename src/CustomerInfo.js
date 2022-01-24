@@ -9,7 +9,7 @@ const CustomerInfo = () => {
     fetch(`http://localhost:1337/enquiries?hashlink=${hashlink}`)
       .then(resp => resp.json())
       .then(resp => setCustomer(resp[0].form))
-  }, [])
+  }, [hashlink])
 
   return (
     <div className="flex flex-col">
