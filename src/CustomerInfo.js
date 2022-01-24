@@ -1,16 +1,7 @@
 import { useEffect, useState } from "react";
 
 
-const CustomerInfo = () => {
-  const [customer, setCustomer] = useState({});
-  const hashlink = new URLSearchParams(window.location.search).get('hashlink');
-
-  useEffect(() => {
-    fetch(`https://nuoma-api.herokuapp.com/enquiries?hashlink=${hashlink}`)
-      .then(resp => resp.json())
-      .then(resp => setCustomer(resp[0].form))
-  }, [hashlink])
-
+const CustomerInfo = ({ customer = {} }) => {
   return (
     <div className="flex flex-col">
       <div className="mt-4">

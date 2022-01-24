@@ -2,20 +2,39 @@
  * @Author: Rajkeshwar Prasad(rajkeshwar.pd@gmail.com) 
  * @Date: 2022-01-24 05:25:19 
  * @Last Modified by: Rajkeshwar Prasad
- * @Last Modified time: 2022-01-24 05:40:57
+ * @Last Modified time: 2022-01-24 05:51:24
  */
 
 class EvaluateForm {
   constructor(formIndex) {
     this.__formIndex = formIndex;
-    this.__form = document.forms[formIndex];
-    this.__submitBtn = this.__form.querySelector('button[type="submit"]');
     this.serialize = this.serialize.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.initialize()
+    this.fire();
+  }
+
+  fire() {
+    const checkFromLoaded = () => {
+      let timeout = setTimeout(() => {
+        console.log('Form loaded called...')
+
+        if (document.forms.length > 0) {
+          console.log('form is loaded...')
+          this.initialize();
+          clearTimeout(timeout)
+        } else {
+          console.log('Checking form is loaded...')
+          checkFromLoaded()
+        }
+      }, 1000);
+    }
+
+    window.onload = checkFromLoaded;
   }
 
   initialize() {
+    this.__form = document.forms[this.__formIndex];
+    this.__submitBtn = this.__form.querySelector('button[type="submit"]');
     this.__submitBtn.addEventListener('click', this.handleSubmit);
   }
 
@@ -48,21 +67,3 @@ class EvaluateForm {
   }
 }
 
-var __fromLoaded = false;
-function checkFromLoaded() {
-    var timeout = setTimeout(() => {
-        console.log('loadied')
-
-        if (document.forms.length > 0) {
-            console.log('form is loaded...')
-            new EvaluateForm(0);
-            clearTimeout(timeout)
-            __fromLoaded = true;
-        } else {
-           console.log('Checking form is loaded...')
-          checkFromLoaded()
-        }
-    }, 1000);
-}
-
-window.onload = checkFromLoaded;
