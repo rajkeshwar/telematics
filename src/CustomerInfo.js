@@ -6,7 +6,7 @@ const CustomerInfo = () => {
   const hashlink = new URLSearchParams(window.location.search).get('hashlink');
 
   useEffect(() => {
-    fetch(`http://localhost:1337/enquiries?hashlink=${hashlink}`)
+    fetch(`https://nuoma-api.herokuapp.com/enquiries?hashlink=${hashlink}`)
       .then(resp => resp.json())
       .then(resp => setCustomer(resp[0].form))
   }, [hashlink])
