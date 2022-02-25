@@ -23,11 +23,12 @@ const MagicLinkPage = () => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('submit called', email);
     const redirectURI = window.location.href;
-    magic.auth.loginWithMagicLink({ email, redirectURI });
+    const response = await magic.auth.loginWithMagicLink({ email, redirectURI });
+    console.log('Request link response ', response);
   }
 
   return (
