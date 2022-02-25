@@ -2,7 +2,7 @@
  * @Author: Rajkeshwar Prasad(rajkeshwar.pd@gmail.com) 
  * @Date: 2022-01-24 05:25:19 
  * @Last Modified by: Rajkeshwar Prasad
- * @Last Modified time: 2022-02-01 15:40:39
+ * @Last Modified time: 2022-02-25 10:27:58
  */
 
 class EvaluateForm {
@@ -55,7 +55,7 @@ class EvaluateForm {
   async handleResponse(resp) {
     console.log(`Received response :`, resp);
     if (resp.hashlink) {
-      const email = resp['YOUR EMAIL'],
+      const email = resp['YOUR EMAIL'];
       const redirectURI = `https://telematics.netlify.app?hashlink=${resp.hashlink}`;
       const linkResponse = await this.magic.auth.loginWithMagicLink({ email, redirectURI });
       alert('Your request is send. Please check your email.');
