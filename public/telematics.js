@@ -2,7 +2,7 @@
  * @Author: Rajkeshwar Prasad(rajkeshwar.pd@gmail.com) 
  * @Date: 2022-01-24 05:25:19 
  * @Last Modified by: Rajkeshwar Prasad
- * @Last Modified time: 2022-02-25 13:07:27
+ * @Last Modified time: 2022-02-25 13:17:21
  */
 
 class EvaluateForm {
@@ -10,7 +10,7 @@ class EvaluateForm {
     this.__formIndex = formIndex;
     this.serialize = this.serialize.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.magic = new window.Magic('pk_live_2CE49584827D79B5'); // ✨
+    // this.magic = new window.Magic('pk_live_2CE49584827D79B5'); // ✨
     this.fire();
   }
 
