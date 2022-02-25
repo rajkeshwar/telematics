@@ -2,7 +2,7 @@
  * @Author: Rajkeshwar Prasad(rajkeshwar.pd@gmail.com) 
  * @Date: 2022-01-24 05:25:19 
  * @Last Modified by: Rajkeshwar Prasad
- * @Last Modified time: 2022-01-24 05:51:24
+ * @Last Modified time: 2022-02-01 15:40:39
  */
 
 class EvaluateForm {
@@ -10,6 +10,7 @@ class EvaluateForm {
     this.__formIndex = formIndex;
     this.serialize = this.serialize.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.magic = new window.Magic('pk_live_2CE49584827D79B5'); // ✨
     this.fire();
   }
 
@@ -42,6 +43,7 @@ class EvaluateForm {
     e.preventDefault();
     const data = this.serialize(this.__form);
     console.log(`Preparing data to send `, data);
+
     fetch('https://nuoma-api.herokuapp.com/enquire', {
       method: 'POST',
       body: JSON.stringify(data)
@@ -50,10 +52,15 @@ class EvaluateForm {
       .then(this.handleResponse)
   }
 
-  handleResponse(resp) {
+  async handleResponse(resp) {
     console.log(`Received response :`, resp);
     if (resp.hashlink) {
-      alert('Your request is send. Please check your email.')
+      const email = resp['YOUR EMAIL'],
+      const redirectURI = `https://telematics.netlify.app?hashlink=${resp.hashlink}`;
+      const linkResponse = await this.magic.auth.loginWithMagicLink({ email, redirectURI });
+      alert('Your request is send. Please check your email.');
+      window.__linkReponse = linkResponse;
+      console.log(linkResponse)
     }
   }
 
